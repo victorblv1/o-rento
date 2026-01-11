@@ -63,7 +63,13 @@ uvicorn backend.main:app --reload
 
 Backend will be available at http://localhost:8000
 
-- API docs: http://localhost:8000/docs
+### API Documentation
+
+FastAPI provides automatic interactive API documentation:
+
+- **Swagger UI**: http://localhost:8000/docs - Interactive API testing interface
+- **ReDoc**: http://localhost:8000/redoc - Alternative documentation UI
+- **OpenAPI JSON**: http://localhost:8000/openapi.json - Raw OpenAPI 3.1.0 specification
 
 ### Frontend Setup
 

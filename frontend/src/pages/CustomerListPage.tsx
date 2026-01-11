@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import {
-  Container,
   Typography,
   Button,
   Box,
@@ -99,7 +98,7 @@ export function CustomerListPage() {
   if (loading) return <LoadingSpinner />;
 
   return (
-    <Container maxWidth="lg" sx={{ py: 4 }}>
+    <Box sx={{ py: 4, width: "100%" }}>
       <Box
         display="flex"
         justifyContent="space-between"
@@ -130,8 +129,8 @@ export function CustomerListPage() {
         />
       </Box>
 
-      <TableContainer component={Paper}>
-        <Table>
+      <TableContainer component={Paper} sx={{ width: "100%" }}>
+        <Table size="small">
           <TableHead>
             <TableRow>
               <TableCell>Name</TableCell>
@@ -188,6 +187,6 @@ export function CustomerListPage() {
         onConfirm={handleDelete}
         onCancel={() => setDeleteDialog({ open: false, customer: null })}
       />
-    </Container>
+    </Box>
   );
 }

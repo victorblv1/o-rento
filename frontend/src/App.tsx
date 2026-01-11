@@ -29,6 +29,18 @@ const theme = createTheme({
       main: "#dc004e",
     },
   },
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        html: {
+          overflowY: "scroll", // Always show scrollbar to prevent layout shift
+        },
+        body: {
+          minHeight: "100vh",
+        },
+      },
+    },
+  },
 });
 
 function App() {
@@ -78,20 +90,33 @@ function App() {
           </Toolbar>
         </AppBar>
 
-        <Container maxWidth={false} disableGutters>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/cars" element={<CarListPage />} />
-            <Route path="/cars/new" element={<CarFormPage />} />
-            <Route path="/cars/edit/:id" element={<CarFormPage />} />
-            <Route path="/customers" element={<CustomerListPage />} />
-            <Route path="/customers/new" element={<CustomerFormPage />} />
-            <Route path="/customers/edit/:id" element={<CustomerFormPage />} />
-            <Route path="/rentals" element={<RentalListPage />} />
-            <Route path="/rentals/new" element={<RentalFormPage />} />
-            <Route path="/rentals/edit/:id" element={<RentalFormPage />} />
-          </Routes>
-        </Container>
+        <Box component="main" sx={{ minHeight: "calc(100vh - 64px)" }}>
+          <Container
+            maxWidth={false}
+            sx={{
+              maxWidth: "1440px",
+              margin: "0 auto",
+              px: 3,
+              width: "100%",
+            }}
+          >
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/cars" element={<CarListPage />} />
+              <Route path="/cars/new" element={<CarFormPage />} />
+              <Route path="/cars/edit/:id" element={<CarFormPage />} />
+              <Route path="/customers" element={<CustomerListPage />} />
+              <Route path="/customers/new" element={<CustomerFormPage />} />
+              <Route
+                path="/customers/edit/:id"
+                element={<CustomerFormPage />}
+              />
+              <Route path="/rentals" element={<RentalListPage />} />
+              <Route path="/rentals/new" element={<RentalFormPage />} />
+              <Route path="/rentals/edit/:id" element={<RentalFormPage />} />
+            </Routes>
+          </Container>
+        </Box>
       </BrowserRouter>
     </ThemeProvider>
   );

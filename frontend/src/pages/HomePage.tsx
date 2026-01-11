@@ -1,5 +1,4 @@
 import {
-  Container,
   Typography,
   Box,
   Grid,
@@ -14,7 +13,7 @@ export function HomePage() {
   const navigate = useNavigate();
 
   return (
-    <Container maxWidth="lg" sx={{ py: 8 }}>
+    <Box sx={{ py: 8 }}>
       <Box textAlign="center" mb={6}>
         <Typography variant="h2" component="h1" gutterBottom>
           O-Rento
@@ -88,6 +87,6 @@ export function HomePage() {
           </Card>
         </Grid>
       </Grid>
-    </Container>
+    </Box>
   );
 }

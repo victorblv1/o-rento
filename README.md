@@ -1,48 +1,93 @@
-# O-Rento Car Rental Management Backend
+# O-Rento Car Rental Management System
 
-FastAPI-based backend for managing car rentals, cars, and customers.
+Full-stack car rental management application with FastAPI backend and React frontend.
+
+## Tech Stack
+
+### Backend
+
+- **FastAPI** - Modern Python web framework
+- **SQLAlchemy** - ORM for database operations
+- **SQLite** - Database (file-based for dev, in-memory for tests)
+- **Pydantic** - Data validation
+- **pytest** - Testing framework
+
+### Frontend
+
+- **React 19** - UI library
+- **TypeScript** - Type safety
+- **Vite** - Build tool
+- **Material-UI v7** - Component library
+- **React Router** - Client-side routing
 
 ## Project Structure
 
 ```
-backend/
-├── __init__.py
-├── main.py                 # FastAPI app entry point with CORS & lifecycle
-├── db.py                   # Database configuration (SQLAlchemy + SQLite)
-├── seed.py                 # Initial data seeding (idempotent)
-├── models/                 # SQLAlchemy ORM models
-│   ├── __init__.py
-│   ├── car.py             # Car entity
-│   ├── customer.py        # Customer entity
-│   └── rental.py          # Rental entity
-├── schemas/                # Pydantic validation schemas
-│   ├── __init__.py
-│   ├── car.py             # Car Create/Update/Response
-│   ├── customer.py        # Customer Create/Update/Response
-│   └── rental.py          # Rental Create/Update/Response
-├── services/               # Business logic layer
-│   ├── __init__.py
-│   ├── car_service.py
-│   ├── customer_service.py
-│   └── rental_service.py
-├── routers/                # API endpoints
-│   ├── __init__.py
-│   ├── cars.py            # /api/cars endpoints
-│   ├── customers.py       # /api/customers endpoints
-│   └── rentals.py         # /api/rentals endpoints
-└── tests/                  # Test suite
-    ├── __init__.py
-    ├── conftest.py        # Pytest configuration
-    ├── test_cars.py
-    ├── test_customers.py
-    └── test_rentals.py
+o-rento/
+├── backend/                # FastAPI backend
+│   ├── main.py            # App entry point
+│   ├── db.py              # Database configuration
+│   ├── models.py          # SQLAlchemy models
+│   ├── schemas.py         # Pydantic schemas
+│   ├── seed.py            # Data seeding
+│   ├── services/          # Business logic
+│   ├── routers/           # API endpoints
+│   └── tests/             # Test suite
+├── frontend/              # React frontend
+│   ├── src/
+│   │   ├── api/          # API clients
+│   │   ├── components/   # Shared components
+│   │   ├── pages/        # Page components
+│   │   ├── types/        # TypeScript types
+│   │   └── App.tsx       # Main app
+│   └── ...
+├── requirements.txt       # Python dependencies
+└── verify_setup.sh       # Setup verification script
 ```
 
-## Setup
+## Quick Start
+
+### Backend Setup
+
+```bash
+# 1. Create and activate virtual environment
+python3 -m venv .venv
+source .venv/bin/activate  # macOS/Linux
+
+# 2. Install dependencies
+pip install -r requirements.txt
+
+# 3. Run backend server
+uvicorn backend.main:app --reload
+```
+
+Backend will be available at http://localhost:8000
+
+- API docs: http://localhost:8000/docs
+
+### Frontend Setup
+
+```bash
+# 1. Navigate to frontend directory
+cd frontend
+
+# 2. Install dependencies
+npm install
+
+# 3. Run development server
+npm run dev
+```
+
+Frontend will be available at http://localhost:5173
+
+---
+
+## Detailed Setup
 
 ### Prerequisites
 
 - Python 3.9 or higher
+- Node.js 18+ and npm
 - pip (Python package manager)
 
 ### 1. Clone the Repository
@@ -52,7 +97,9 @@ git clone <repository-url>
 cd o-rento
 ```
 
-### 2. Create Virtual Environment
+### 2. Backend Setup
+
+#### Create Virtual Environment
 
 ```bash
 python3 -m venv .venv
@@ -63,7 +110,7 @@ source .venv/bin/activate  # On macOS/Linux
 
 > **Note**: The `.venv` directory is excluded from version control (see `.gitignore`). Each developer/environment must create their own virtual environment.
 
-### 3. Install Dependencies
+#### Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -204,7 +251,7 @@ This workflow:
 ## Database
 
 - **Development**: SQLite file (`orento.db`)
-- **Tests**: In-memory SQLite (`:memory:`)
+- **Tests**: In-memory SQLite with shared cache
 - **Seeding**: Initial data automatically loaded on startup (idempotent)
 
 Initial seed data includes:
@@ -212,7 +259,40 @@ Initial seed data includes:
 - 5 cars (Toyota Corolla, Tesla Model 3, Ford Focus, Honda Civic, BMW 3 Series)
 - 3 customers (Alice Johnson, Bob Smith, Charlie Davis)
 
+## Frontend
+
+The React frontend is located in the `frontend/` directory. See [frontend/README.md](frontend/README.md) for detailed documentation.
+
+### Features
+
+- ✅ **Cars**: List, filter, search, add, edit, delete with image thumbnails
+- ✅ **Customers**: Table view with search, CRUD operations
+- ✅ **Rentals**: Manage bookings with date validation and cost calculation
+- ✅ **Form Validation**: Client-side validation with error messages
+- ✅ **Error Handling**: API errors displayed via snackbar alerts
+- ✅ **TypeScript**: Full type safety with strict mode
+
+### Setup & Run
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Frontend will be available at http://localhost:5173
+
+### Build for Production
+
+```bash
+cd frontend
+npm run build
+npm run preview  # Preview production build
+```
+
 ## Running Tests
+
+### Backend Tests
 
 ```bash
 # Activate virtual environment if not already active

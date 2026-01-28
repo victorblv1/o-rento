@@ -80,7 +80,7 @@ export function RentalListPage() {
       setFilteredRentals(rentals);
     } else {
       setFilteredRentals(
-        rentals.filter((rental) => rental.status === statusFilter)
+        rentals.filter((rental) => rental.status === statusFilter),
       );
     }
   };
@@ -126,7 +126,7 @@ export function RentalListPage() {
     const start = new Date(startDate);
     const end = new Date(endDate);
     const days = Math.ceil(
-      (end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24)
+      (end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24),
     );
     return days;
   };
@@ -171,8 +171,11 @@ export function RentalListPage() {
         </TextField>
       </Box>
 
-      <TableContainer component={Paper} sx={{ width: "100%" }}>
-        <Table size="small">
+      <TableContainer
+        component={Paper}
+        sx={{ width: "100%", overflowX: "auto" }}
+      >
+        <Table size="small" sx={{ minWidth: 900 }}>
           <TableHead>
             <TableRow>
               <TableCell>Car</TableCell>

@@ -74,7 +74,7 @@ export function CustomerListPage() {
       (customer) =>
         customer.name.toLowerCase().includes(term) ||
         customer.email.toLowerCase().includes(term) ||
-        customer.licenseNumber.toLowerCase().includes(term)
+        customer.licenseNumber.toLowerCase().includes(term),
     );
     setFilteredCustomers(filtered);
   };
@@ -89,7 +89,7 @@ export function CustomerListPage() {
       loadCustomers();
     } catch (err) {
       setError(
-        err instanceof Error ? err.message : "Failed to delete customer"
+        err instanceof Error ? err.message : "Failed to delete customer",
       );
       setDeleteDialog({ open: false, customer: null });
     }
@@ -129,8 +129,11 @@ export function CustomerListPage() {
         />
       </Box>
 
-      <TableContainer component={Paper} sx={{ width: "100%" }}>
-        <Table size="small">
+      <TableContainer
+        component={Paper}
+        sx={{ width: "100%", overflowX: "auto" }}
+      >
+        <Table size="small" sx={{ minWidth: 650 }}>
           <TableHead>
             <TableRow>
               <TableCell>Name</TableCell>

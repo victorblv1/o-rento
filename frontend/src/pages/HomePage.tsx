@@ -13,7 +13,7 @@ export function HomePage() {
   const navigate = useNavigate();
 
   return (
-    <Box sx={{ py: 8 }}>
+    <Box sx={{ py: 8, width: "100%" }}>
       <Box textAlign="center" mb={6}>
         <Typography variant="h2" component="h1" gutterBottom>
           O-Rento
